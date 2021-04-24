@@ -13,7 +13,10 @@
     </head>
     <body>
         <form action="<%=request.getContextPath()%>/addtimework" method="post">
-        <%for(int i = 0 ; i<24;i++){%>
+            <input  type="hidden" value="<%=request.getParameter("day")%>" name="day">
+        <input  type="hidden" value="<%=request.getParameter("month")%>" name="month">
+        <input  type="hidden" value="<%=request.getParameter("year")%>" name="year">
+            <%for(int i = 0 ; i<24;i++){%>
         <input type="checkbox" name="hours" value="<%=i%>"/><%=i%>
      <%}%>
   <input type="submit" value="submit" />

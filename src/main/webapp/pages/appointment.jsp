@@ -23,7 +23,9 @@
             dataCrud = new FilesCrud(new File(Config.getFileName()));
         }
         
-
+ session.setAttribute("day",c.get(Calendar.DAY_OF_MONTH));
+        session.setAttribute("month",c.get(Calendar.MONTH));
+        session.setAttribute("year",Calendar.YEAR);
 
 
    %>

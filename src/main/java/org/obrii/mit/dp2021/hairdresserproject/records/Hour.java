@@ -15,4 +15,8 @@ public class Hour {
     private String usersName;
     private String usersEmail;
     private String time;
+
+    public Hour(String time) {
+        this.time = time;
+    }
 }

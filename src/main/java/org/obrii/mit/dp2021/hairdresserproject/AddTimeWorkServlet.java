@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.obrii.mit.dp2021.hairdresserproject.records.Day;
+import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
 
 /**
  *
@@ -59,15 +62,26 @@ public class AddTimeWorkServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-        
-        
+        HttpSession session  = request.getSession();
+       
+        System.out.println(session.getAttribute("month"));
+        session.getAttribute("year");
         //String str = request.getParameter("hours");
        // System.out.println(request.getParameter("hours"));
         String[] words = request.getParameterValues("hours");
+        Day day = new Day();
+        day.setDate(String.valueOf(session.getAttribute("day")));
+            day.setMonth(String.valueOf(session.getAttribute("month")));      
+            day.setYear(String.valueOf(session.getAttribute("year") ));
+            
         for (String word : words) {
             System.out.println(word);
+            Hour hour = new Hour(word);
+            day.addTime(hour);
+            
+            
         }
-                
+            
                 
     }
 

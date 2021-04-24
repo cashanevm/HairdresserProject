@@ -12,7 +12,54 @@ import java.util.ArrayList;
  * @author NEVM PC
  */
 public class Day {
-    private int time;
-    private int month;
-    private ArrayList<Hour> TimesList;
+    private String time;
+    private String date;
+    private String month;
+    private String year;
+    private ArrayList<Hour> TimesList = new ArrayList<Hour>();
+    
+    public Day() {
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+    
+
+    public ArrayList<Hour> getTimesList() {
+        return TimesList;
+    }
+
+    public void addTime(Hour hour) {
+        TimesList.add(hour);
+    }
 }
+
