@@ -5,12 +5,13 @@
  */
 package org.obrii.mit.dp2021.hairdresserproject.records;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author NEVM PC
  */
-public class Period {
+public class Period implements Serializable{
     private ArrayList<Hour> DaysList;
 }

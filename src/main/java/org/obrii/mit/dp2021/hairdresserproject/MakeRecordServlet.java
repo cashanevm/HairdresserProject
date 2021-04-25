@@ -8,23 +8,22 @@ package org.obrii.mit.dp2021.hairdresserproject;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.obrii.mit.dp2021.hairdresserproject.files.Config;
 import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
-import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
+import org.obrii.mit.dp2021.hairdresserproject.user.User;
 
 /**
  *
  * @author NEVM PC
  */
-@WebServlet(name = "AddTimeServlet", urlPatterns = {"/AddTime"})
-public class AddTimeServlet extends HttpServlet {
+@WebServlet(name = "MakeRecordServlet", urlPatterns = {"/MakeRecord"})
+public class MakeRecordServlet extends HttpServlet {
 FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +34,7 @@ FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-   
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -49,15 +48,9 @@ FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (Config.getFileName().equals("")) {
-            Config.setFileName(this.getServletContext().getRealPath("") + "day.txt");
-            dataCrud = new FilesCrud(new File(Config.getFileName()));
-        }
-        
-        
-        request.setAttribute("days", dataCrud.readDays());
-        
-        request.getRequestDispatcher("pages/addtime.jsp").forward(request, response); 
+        request.getParameter("day");
+        request.getParameter("month");
+request.getRequestDispatcher("pages/record.jsp").forward(request, response); 
     }
 
     /**
@@ -71,7 +64,17 @@ FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    ArrayList<Hour> hours = (ArrayList<Hour>) request.getAttribute("hours");
+         HttpSession session  = request.getSession();
+        User user = (User) session.getAttribute("user");
+       
+       if (Config.getFileName().equals("")) {
+            Config.setFileName(this.getServletContext().getRealPath("") + "day.txt");
+            dataCrud = new FilesCrud(new File(Config.getFileName()));
+        } 
+        dataCrud.makeReservation(request.getParameter("hour"), request.getParameter("day"), request.getParameter("month"), user.getEmail(), String.valueOf(request.getParameter("ph")), user.getName());
+    
+    request.getRequestDispatcher("pages/seccessRecord.jsp").forward(request, response); 
+     
     }
 
     /**

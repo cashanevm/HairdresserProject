@@ -50,9 +50,12 @@ public class AppointmentServlet extends HttpServlet {
             throws ServletException, IOException {
        
         if (Config.getFileName().equals("")) {
-            Config.setFileName(this.getServletContext().getRealPath("") + "data.txt");
+            Config.setFileName(this.getServletContext().getRealPath("") + "day.txt");
             dataCrud = new FilesCrud(new File(Config.getFileName()));
         }
+        
+        
+        request.setAttribute("days", dataCrud.readDays());
         
         
         

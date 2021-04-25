@@ -5,6 +5,7 @@
  */
 package org.obrii.mit.dp2021.hairdresserproject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.obrii.mit.dp2021.hairdresserproject.files.Config;
+import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
 import org.obrii.mit.dp2021.hairdresserproject.records.Day;
 import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
 
@@ -32,7 +35,7 @@ public class AddTimeWorkServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-
+ FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -61,7 +64,10 @@ public class AddTimeWorkServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       if (Config.getFileName().equals("")) {
+            Config.setFileName(this.getServletContext().getRealPath("") + "day.txt");
+            dataCrud = new FilesCrud(new File(Config.getFileName()));
+        }
         HttpSession session  = request.getSession();
        
         System.out.println(session.getAttribute("month"));
@@ -81,7 +87,8 @@ public class AddTimeWorkServlet extends HttpServlet {
             
             
         }
-            
+         dataCrud.createDay(day);
+         request.getRequestDispatcher("pages/seccessAdd.jsp").forward(request, response); 
                 
     }
 

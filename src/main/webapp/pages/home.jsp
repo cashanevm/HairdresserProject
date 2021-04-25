@@ -51,7 +51,11 @@
         <hr>
         
         
+        <form action="<%=request.getContextPath()%>/MyRecords">
+            <input type="submit" value="мої броні">
+        </form>
         
+        <hr>
         
         
         

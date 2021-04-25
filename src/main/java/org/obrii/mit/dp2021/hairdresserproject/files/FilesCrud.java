@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.obrii.mit.dp2021.hairdresserproject.records.Day;
+import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
 
 
 
@@ -104,16 +105,78 @@ public class FilesCrud  {
     
     
    
-    public void createDay(String Num) {
-//        User newDay = new User(Num);
-//        List<Day> data = this.readData();
-//       
-//        data.add(newDay);
-//        this.writeData(data);
+    public void createDay(Day day) {
+        
+        List<Day> data = this.readDays();
+       
+        data.add(day);
+        this.writeDays(data);
 
     }
 
- 
+     public void deleteReservation(String time, String date, String month) {        
+        List<Day> newData = new ArrayList<>();
+        for (Day d : this.readDays()) {
+            if (d.getMonth().equals(month) &&  d.getDate().equals(date)) {
+                for(Hour h : d.getTimesList()){
+                    if(h.isWriten() && h.getTime().equals(time)){
+                    h.setWriten(false);
+                    
+                    h.setUsersEmail(null);
+                    h.setUsersName(null);
+                    h.setPhone(null);
+                    
+                    }
+                
+                }
+            newData.add(d);
+            }
+            else{
+            newData.add(d);
+            }
+        }
+        this.writeDays(newData);
+    }
+           
+    public void makeReservation(String time, String date, String month,String email, String phone, String name) {        
+        List<Day> newData = new ArrayList<>();
+        for (Day d : this.readDays()) {
+            if (d.getMonth().equals(month)  &&  d.getDate().equals(date)) {
+                
+                for(Hour h : d.getTimesList()){
+                    if(h.getTime().equals(time)){
+                    
+                    h.setWriten(true);
+                    h.setUsersEmail(email);
+                    h.setUsersName(phone);
+                    h.setPhone(name);
+                    }
+                    
+                
+                }
+            newData.add(d);
+            }
+            else{
+            newData.add(d);
+            }
+        }
+        this.writeDays(newData);
+    }
+     public Day readDay( String date, String month) {
+     Day neededDay = new Day();
+     for (Day d : this.readDays()) {
+            if (d.getMonth() == month &&  d.getDate() == date) {
+              return d;
+          }
+            
+        }
+     
+     return neededDay;
+     }
+     
+     
+     
+     
 //    public void deleteData(int id) {        
 //        List<Day> newData = new ArrayList<>();
 //        for (Day d : this.readData()) {

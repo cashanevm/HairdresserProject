@@ -4,6 +4,9 @@
     Author     : NEVM PC
 --%>
 
+<%@page import="org.obrii.mit.dp2021.hairdresserproject.user.User"%>
+<%@page import="java.util.List"%>
+<%@page import="org.obrii.mit.dp2021.hairdresserproject.records.Day"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.files.Config"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.files.Config"%>
@@ -12,43 +15,150 @@
 <%@page import="java.util.Calendar"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
-
    <%
-
-   Calendar c = new GregorianCalendar();
-   FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
-   if (Config.getFileName().equals("")) {
-            Config.setFileName(this.getServletContext().getRealPath("") + "data.txt");
-            dataCrud = new FilesCrud(new File(Config.getFileName()));
-        }
-        
- session.setAttribute("day",c.get(Calendar.DAY_OF_MONTH));
-        session.setAttribute("month",c.get(Calendar.MONTH));
-        session.setAttribute("year",Calendar.YEAR);
-
-
+    Calendar c = new GregorianCalendar();
+    
+    
+    List<Day> days = (List<Day>) request.getAttribute("days");
+    
    %>
+  <% User user = (User) session.getAttribute("user");
+            String name = user.getName();
+            String img = user.getImg();
+            String email = user.getEmail();
+           
+         
+        %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Appointment</title>
+        <title>AddTime</title>
     </head>
+    
+    <style type="text/css">
+   TABLE {
+       width: 100%;
+    background: white; /* Цвет фона таблицы */
+    color: white; /* Цвет текста */
+   }
+   TD, TH {
+    background: maroon; /* Цвет фона ячеек */
+    padding: 5px; /* Поля вокруг текста */
+   }
+  </style>
+    
     <body>
         <h1>Date</h1>
-    <%for(int i = 0 ; i<14; i++){
         
+        <form action="<%=request.getContextPath()%>/success" method="post">
+            <input type="submit" value="home">
         
-    %>
-    <form action="<%=request.getContextPath()%>/addtime"> 
-        <input type="hidden" name="day" value="<%= c.get(Calendar.DAY_OF_MONTH)%>">
-        <input type="hidden" name="month" value="<%=c.get(Calendar.MONTH)%>">
-        <input type="hidden" name="year" value="<%= c.get(Calendar.YEAR)%>">
-        <button type="submit"><%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></button>
-        </form>       
+        </form>
         
-        
-        <%c.add(Calendar.DAY_OF_YEAR, 1);}%>
+        <table>
+   
+    <%for(int i = 0 ; i<14; i++){%>
+  <tr>
+    <th><%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></th>
+  </tr>
+    
+   <%%>
+    
+            <%for(int j = 0; j<days.size();j++){
+                
+                if(days.get(j).getDate().equals(String.valueOf(c.get(Calendar.DAY_OF_MONTH))) && days.get(j).getMonth().equals(String.valueOf(c.get(Calendar.MONTH))) ){
+                  
+                    for(int q = 0; q<days.get(j).getTimesList().size();q++){
+                  
+            %>
+            <tr>
+                <td>
+            <%=days.get(j).getTimesList().get(q).getTime()%> година||
+            <%=days.get(j).getDate()%>   число         
+            <% 
+            System.out.println(days.get(j).getTimesList().get(q).isWriten());
+            System.out.println(days.get(j).getTimesList().get(q).getPhone());
+            System.out.println(days.get(j).getTimesList().get(q).getTime());
+            System.out.println(days.get(j).getTimesList().get(q).getUsersEmail());
+            System.out.println(days.get(j).getTimesList().get(q).getUsersName());
+           
+                if (days.get(j).getTimesList().get(q).isWriten() && days.get(j).getTimesList().get(q).getUsersEmail().equals(email)){
+            
+            %>
+            
+            Заброньовано вами!
+            
+            <form action="<%=request.getContextPath()%>/DeleteRecord"> 
+        <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
+        <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTimesList().get(q).getTime()%>">
+        <button type="submit">удалити</button>
+        </form> 
+          
+            
+            <%
+               } else if (days.get(j).getTimesList().get(q).isWriten()){
+                        
+                        %>
+            
+            Заброньовано  
+            
+            
+            
+            <%
+                        
+                        }
+            
+            
+            else{
+
+%>
+            
+            <form action="<%=request.getContextPath()%>/MakeRecord"> 
+        <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
+        <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTimesList().get(q).getTime()%>">
+        <button type="submit">записаться</button>
+        </form> 
+            
+            
+            
+            <%
+
+
+} 
+            
+            
+            %>      
+           
+                    
+                </td>
+            </tr>
+            
+            
+            <%
+                        
+                    }
+                }
+                    
+            }
+   %>
+            
+            
+            
+            
+            
+            
+       
+    
+    
+    <%c.add(Calendar.DAY_OF_YEAR, 1);}%>
+   
+  
+  
+ </table>
+   
      
     </body>
 </html>
+

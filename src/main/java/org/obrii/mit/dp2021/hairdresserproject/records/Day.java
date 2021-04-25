@@ -5,13 +5,14 @@
  */
 package org.obrii.mit.dp2021.hairdresserproject.records;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author NEVM PC
  */
-public class Day {
+public class Day implements Serializable{
     private String time;
     private String date;
     private String month;
