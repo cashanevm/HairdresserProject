@@ -12,15 +12,63 @@ import java.io.Serializable;
  * @author NEVM PC
  */
 public class Hour implements Serializable{
-    private boolean Write = false;
+  
     private boolean Writen = false;
     private String usersName;
     private String usersEmail;
     private String phone;
     private String time;
+    private String date;
+    private String month;
+    private String year;
+
+    public Hour(boolean Writen, String usersName, String usersEmail, String phone, String time, String date, String month, String year) {
+        this.Writen = Writen;
+        this.usersName = usersName;
+        this.usersEmail = usersEmail;
+        this.phone = phone;
+        this.time = time;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+    }
+    public Hour( String usersName, String usersEmail, String phone, String time, String date, String month, String year) {
+       
+        this.usersName = usersName;
+        this.usersEmail = usersEmail;
+        this.phone = phone;
+        this.time = time;
+        this.date = date;
+        this.month = month;
+        this.year = year;
+    }
 
     public Hour(String time) {
         this.time = time;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getPhone() {
@@ -29,14 +77,6 @@ public class Hour implements Serializable{
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public boolean isWrite() {
-        return Write;
-    }
-
-    public void setWrite(boolean Write) {
-        this.Write = Write;
     }
 
     public boolean isWriten() {

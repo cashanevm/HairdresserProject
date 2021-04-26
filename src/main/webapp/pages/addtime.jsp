@@ -18,8 +18,8 @@
     Calendar c = new GregorianCalendar();
     
     
-    List<Day> days = (List<Day>) request.getAttribute("days");
-    
+    //List<Day> days = (List<Day>) request.getAttribute("days");
+    List<Hour> days = (List<Hour>) request.getAttribute("days");
    %>
 
 <html>
@@ -60,21 +60,23 @@
             <%for(int j = 0; j<days.size();j++){
                 
                 if(days.get(j).getDate().equals(String.valueOf(c.get(Calendar.DAY_OF_MONTH))) && days.get(j).getMonth().equals(String.valueOf(c.get(Calendar.MONTH))) ){
-                  
-                    for(int q = 0; q<days.get(j).getTimesList().size();q++){
+                 // if(true){
+                    System.out.println(days.get(j).getDate());
+                     System.out.println(String.valueOf(c.get(Calendar.DAY_OF_MONTH)));
+                 
                   
             %>
             <tr>
                 <td>
-            <%=days.get(j).getTimesList().get(q).getTime()%>||
+            <%=days.get(j).getTime()%>||
             <%=days.get(j).getDate()%>            
                    
            <% 
-               if(days.get(j).getTimesList().get(q).isWriten()){
+               if(days.get(j).isWriten()){
                    %>
-          || <%=days.get(j).getTimesList().get(q).getPhone()%> ||
-            <%=days.get(j).getTimesList().get(q).getUsersEmail()%> ||
-            <%=days.get(j).getTimesList().get(q).getUsersName()%> 
+          || <%=days.get(j).getPhone()%> ||
+            <%=days.get(j).getUsersEmail()%> ||
+            <%=days.get(j).getUsersName()%> 
             
             <%
                    
@@ -91,7 +93,7 @@
             
             <%
                         
-                    }
+                    
                 }
                     
             }

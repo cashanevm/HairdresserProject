@@ -8,13 +8,17 @@ package org.obrii.mit.dp2021.hairdresserproject;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataStore;
 import org.obrii.mit.dp2021.hairdresserproject.files.Config;
 import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
 import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
@@ -25,7 +29,7 @@ import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
  */
 @WebServlet(name = "AddTimeServlet", urlPatterns = {"/AddTime"})
 public class AddTimeServlet extends HttpServlet {
-FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,13 +53,22 @@ FilesCrud dataCrud = new FilesCrud(new File(Config.getFileName()));
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (Config.getFileName().equals("")) {
-            Config.setFileName(this.getServletContext().getRealPath("") + "day.txt");
-            dataCrud = new FilesCrud(new File(Config.getFileName()));
-        }
+        
+    
+        
+        try {
+        DataStore store = new DataStore();
+        
+         request.setAttribute("days", store.getData());
+    } catch (SQLException ex) {
+        Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
+     
         
         
-        request.setAttribute("days", dataCrud.readDays());
+       
         
         request.getRequestDispatcher("pages/addtime.jsp").forward(request, response); 
     }

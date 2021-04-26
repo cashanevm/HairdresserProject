@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataBaseInteraction;
 import org.obrii.mit.dp2021.hairdresserproject.files.Config;
 import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
 import org.obrii.mit.dp2021.hairdresserproject.records.Day;
@@ -70,24 +71,28 @@ public class AddTimeWorkServlet extends HttpServlet {
         }
         HttpSession session  = request.getSession();
        
-        System.out.println(session.getAttribute("month"));
+        
         session.getAttribute("year");
         //String str = request.getParameter("hours");
        // System.out.println(request.getParameter("hours"));
         String[] words = request.getParameterValues("hours");
-        Day day = new Day();
-        day.setDate(String.valueOf(session.getAttribute("day")));
-            day.setMonth(String.valueOf(session.getAttribute("month")));      
-            day.setYear(String.valueOf(session.getAttribute("year") ));
-            
+        
+        
+           DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
+              
         for (String word : words) {
             System.out.println(word);
             Hour hour = new Hour(word);
-            day.addTime(hour);
             
-            
+            hour.setDate(String.valueOf(session.getAttribute("day")));
+            hour.setMonth(String.valueOf(session.getAttribute("month")));      
+            hour.setYear(String.valueOf(session.getAttribute("year") ));
+            bd.addData(hour);
         }
-         dataCrud.createDay(day);
+        
+        
+        
+         
          request.getRequestDispatcher("pages/seccessAdd.jsp").forward(request, response); 
                 
     }

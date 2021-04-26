@@ -4,6 +4,7 @@
     Author     : NEVM PC
 --%>
 
+<%@page import="org.obrii.mit.dp2021.hairdresserproject.records.Hour"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.user.User"%>
 <%@page import="java.util.List"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.records.Day"%>
@@ -19,7 +20,7 @@
     Calendar c = new GregorianCalendar();
     
     
-    List<Day> days = (List<Day>) request.getAttribute("days");
+    List<Hour> days = (List<Hour>) request.getAttribute("days");
     
    %>
   <% User user = (User) session.getAttribute("user");
@@ -67,22 +68,23 @@
             <%for(int j = 0; j<days.size();j++){
                 
                 if(days.get(j).getDate().equals(String.valueOf(c.get(Calendar.DAY_OF_MONTH))) && days.get(j).getMonth().equals(String.valueOf(c.get(Calendar.MONTH))) ){
-                  
-                    for(int q = 0; q<days.get(j).getTimesList().size();q++){
+                //if(true){
+                
+                    
                   
             %>
             <tr>
                 <td>
-            <%=days.get(j).getTimesList().get(q).getTime()%> година||
+            <%=days.get(j).getTime()%> година||
             <%=days.get(j).getDate()%>   число         
             <% 
-            System.out.println(days.get(j).getTimesList().get(q).isWriten());
-            System.out.println(days.get(j).getTimesList().get(q).getPhone());
-            System.out.println(days.get(j).getTimesList().get(q).getTime());
-            System.out.println(days.get(j).getTimesList().get(q).getUsersEmail());
-            System.out.println(days.get(j).getTimesList().get(q).getUsersName());
+            System.out.println(days.get(j).isWriten());
+            System.out.println(days.get(j).getPhone());
+            System.out.println(days.get(j).getTime());
+            System.out.println(days.get(j).getUsersEmail());
+            System.out.println(days.get(j).getUsersName());
            
-                if (days.get(j).getTimesList().get(q).isWriten() && days.get(j).getTimesList().get(q).getUsersEmail().equals(email)){
+                if (days.get(j).isWriten() && days.get(j).getUsersEmail().equals(email)){
             
             %>
             
@@ -91,13 +93,13 @@
             <form action="<%=request.getContextPath()%>/DeleteRecord"> 
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
-       <input type="hidden" name="hour" value="<%=days.get(j).getTimesList().get(q).getTime()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
         <button type="submit">удалити</button>
         </form> 
           
             
             <%
-               } else if (days.get(j).getTimesList().get(q).isWriten()){
+               } else if (days.get(j).isWriten()){
                         
                         %>
             
@@ -117,7 +119,7 @@
             <form action="<%=request.getContextPath()%>/MakeRecord"> 
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
-       <input type="hidden" name="hour" value="<%=days.get(j).getTimesList().get(q).getTime()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
         <button type="submit">записаться</button>
         </form> 
             
@@ -138,7 +140,7 @@
             
             <%
                         
-                    }
+                    
                 }
                     
             }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.obrii.mit.dp2021.hairdresserproject.user.User;
+import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataBaseConnection;
 
 /**
  *
@@ -49,6 +50,7 @@ public class SuccessLoginServlet extends HttpServlet {
               
         User user = new User(request.getParameter("img"),request.getParameter("name"),request.getParameter("email"));
         session.setAttribute("user",user);
+        DataBaseConnection con = new DataBaseConnection();
         request.getRequestDispatcher("pages/home.jsp").forward(request, response); 
     }
 
