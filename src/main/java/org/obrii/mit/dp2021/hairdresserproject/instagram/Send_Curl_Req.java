@@ -25,8 +25,8 @@ public class Send_Curl_Req {
 		con.setRequestMethod("POST");
 	 	con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-		String urlParameters = "client_id="+commonthings.CLIENT_ID+"&client_secret="+commonthings.CLIENT_SECRET+"&grant_type=authorization_code&redirect_uri=https:"+commonthings.AUTHORIZATION_REDIRECT_URI+"&code="+code+"";
-
+		String urlParameters = "client_id="+commonthings.CLIENT_ID+"&client_secret="+commonthings.CLIENT_SECRET+"&grant_type=authorization_code&redirect_uri=https://hairdresserproject.herokuapp.com/inst&code="+code+"";
+//&scope=user_profile,user_media&response_type=code"
 		// Send post request
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
@@ -57,13 +57,21 @@ public class Send_Curl_Req {
 		Insta_Profile obj_Insta_Profile=new Insta_Profile();
 		
 		JSONObject jsonObject = new JSONObject(response.toString());
+//		
 		
-		JSONObject myResponse = jsonObject.getJSONObject("user");
-	 	
-	 	obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
-		obj_Insta_Profile.setId(myResponse.getString("id"));
-		obj_Insta_Profile.setProfile_picture(myResponse.getString("profile_picture"));
-		obj_Insta_Profile.setUsername(myResponse.getString("username"));
+                //jsonObject.getString("user_id");
+
+	 	obj_Insta_Profile.setId(jsonObject.getString("access_token"));
+	 	//obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
+		//obj_Insta_Profile.setId(myResponse.getString("id"));
+		//obj_Insta_Profile.setProfile_picture(myResponse.getString("profile_picture"));
+		//obj_Insta_Profile.setUsername(myResponse.getString("username"));
+//JSONObject myResponse = jsonObject.getJSONObject("user");
+//	 	
+//	 	obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
+//		obj_Insta_Profile.setId(myResponse.getString("id"));
+//		obj_Insta_Profile.setProfile_picture(myResponse.getString("profile_picture"));
+//		obj_Insta_Profile.setUsername(myResponse.getString("username"));
 		 
 		
 		return obj_Insta_Profile;
