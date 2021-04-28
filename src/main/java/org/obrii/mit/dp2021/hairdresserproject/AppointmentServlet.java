@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataStore;
-import org.obrii.mit.dp2021.hairdresserproject.files.Config;
-import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
+
 
 /**
  *
@@ -27,51 +26,19 @@ import org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud;
 @WebServlet(name = "AppointmentServlet", urlPatterns = {"/Appointment"})
 public class AppointmentServlet extends HttpServlet {
 
-    
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-
-    
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+  
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        try {
-        DataStore store = new DataStore();
-        
-         request.setAttribute("days", store.getData());
-    } catch (SQLException ex) {
-        Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        System.out.println("error");
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
-         System.out.println("error");
-    }
-        
-        
-        
-        
-        
-        
-        
-        request.getRequestDispatcher("pages/appointment.jsp").forward(request, response); 
+                try {
+                    DataStore store = new DataStore();
+                    request.setAttribute("days", store.getData());
+                } catch (SQLException ex) {
+                    Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AddTimeServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                request.getRequestDispatcher("pages/appointment.jsp").forward(request, response); 
     }
 
     /**

@@ -25,7 +25,7 @@
             String img = user.getImg();
             String email = user.getEmail();
     
-    List<Day> days = (List<Day>) request.getAttribute("days");
+    List<Hour> days = (List<Hour>) request.getAttribute("days");
     
     %>
     <head>
@@ -35,6 +35,10 @@
     <body>
   
    <h1>сегодня: <%=c.get(Calendar.DAY_OF_MONTH)%></h1>
+    <form action="<%=request.getContextPath()%>/success" method="post">
+            <input type="submit" value="home">
+        
+        </form>
  </table>
         
         <table border="1" width="100%" cellpadding="5">
@@ -53,21 +57,21 @@
         
         <%
     
-            for(Hour h : days.get(j).getTimesList()){
             
-                if(email.equals(h.getUsersEmail())){
+            
+                if(email.equals(days.get(j).getUsersEmail())){
             
            
             %>
  
 <tr>
-   <th><%=days.get(j).getDate()%>||<%=days.get(j).getMonth()%>||<%=h.getTime()%></th> 
+   <th><%=days.get(j).getDate()%>||<%=days.get(j).getMonth()%>||<%=days.get(j).getTime()%></th> 
    <td>
-       <%=h.getUsersName()%> 
+       <%=days.get(j).getUsersName()%> 
        <form action="<%=request.getContextPath()%>/DeleteRecord"> 
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
-       <input type="hidden" name="hour" value="<%=h.getTime()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
         <button type="submit">удалити</button>
         </form> 
    </td>
@@ -79,7 +83,7 @@
             
             }
             
-            }
+            
     
     
     }

@@ -3,46 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.obrii.mit.dp2021.hairdresserproject;
+package org.obrii.mit.dp2021.hairdresserproject.instagram;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import org.obrii.mit.dp2021.hairdresserproject.user.User;
-import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataBaseConnection;
-import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataBaseInteraction;
-import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataStore;
-import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
 
 /**
  *
  * @author NEVM PC
  */
-@WebServlet(name = "SuccessLoginServlet", urlPatterns = {"/success"})
-public class SuccessLoginServlet extends HttpServlet {
+@WebServlet(name = "InstServlet", urlPatterns = {"/inst"})
+public class InstServlet extends HttpServlet {
 
 
-     
+
+
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session  = request.getSession();
-                User user = new User(request.getParameter("img"),request.getParameter("name"),request.getParameter("email"));
-                session.setAttribute("user",user);
-                DataBaseConnection con = new DataBaseConnection();
-
-                
-                request.getRequestDispatcher("pages/home.jsp").forward(request, response); 
+    
+    request.getRequestDispatcher("pages/inst_success.jsp").forward(request, response); 
     }
 
     /**
@@ -56,7 +42,7 @@ public class SuccessLoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-               request.getRequestDispatcher("pages/home.jsp").forward(request, response); 
+       request.getRequestDispatcher("pages/inst_index.jsp").forward(request, response); 
     }
 
     /**

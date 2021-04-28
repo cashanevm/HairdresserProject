@@ -39,6 +39,10 @@
             <input type="submit" value="добавить суперюзера">
         </form>
            <hr> 
+           <form action="<%=request.getContextPath()%>/Clean">
+            <input type="submit" value="Очистить базу от мусора">
+        </form>
+           <hr> 
             
             <%
             }%></p>

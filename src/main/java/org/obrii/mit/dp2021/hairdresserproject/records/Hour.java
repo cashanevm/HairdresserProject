@@ -22,6 +22,12 @@ public class Hour implements Serializable{
     private String month;
     private String year;
 
+    public Hour(String time, String date, String month) {
+        this.time = time;
+        this.date = date;
+        this.month = month;
+    }
+
     public Hour(boolean Writen, String usersName, String usersEmail, String phone, String time, String date, String month, String year) {
         this.Writen = Writen;
         this.usersName = usersName;

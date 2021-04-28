@@ -14,7 +14,12 @@
    <meta name="google-signin-client_id" content="217334640306-cgjotu7nlpkdrdf35h4dasbntmlu9lrd.apps.googleusercontent.com">
 </head>
 <body>
-   <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
+   
+     <form action="<%=request.getContextPath()%>/inst" method="post">
+         <input type="submit" value="inst">
+      </form>
+    
+    <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
       <img id="myImg"><br>
       <p id="name"></p>
       <div id="status"></div>
@@ -40,6 +45,9 @@
       document.getElementById("status").innerHTML = 'Welcome '+name+'!</p> <form action="<%=request.getContextPath()%>/success?"><input type="hidden" name="img" value="'+imagurl+'"><input type="hidden" name="name" value="'+name+'"><input type="hidden" name="email" value="'+email+'"><input type="submit" value="submit"></form>'
    }
    </script>
+ 
+   
+   
    <button onclick="myFunction()">Sign Out</button>
    <script>
       function myFunction() {

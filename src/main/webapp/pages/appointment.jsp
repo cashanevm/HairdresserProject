@@ -8,9 +8,7 @@
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.user.User"%>
 <%@page import="java.util.List"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.records.Day"%>
-<%@page import="org.obrii.mit.dp2021.hairdresserproject.files.FilesCrud"%>
-<%@page import="org.obrii.mit.dp2021.hairdresserproject.files.Config"%>
-<%@page import="org.obrii.mit.dp2021.hairdresserproject.files.Config"%>
+
 <%@page import="java.io.File"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>

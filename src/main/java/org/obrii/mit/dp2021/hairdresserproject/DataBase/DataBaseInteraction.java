@@ -7,6 +7,8 @@ package org.obrii.mit.dp2021.hairdresserproject.DataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import org.obrii.mit.dp2021.hairdresserproject.records.Hour;
 
@@ -48,13 +50,21 @@ public class DataBaseInteraction {
              Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
              try (Connection conn = DriverManager.getConnection(url, username, password)){
                 Statement statement = conn.createStatement();
-                int rows = statement.executeUpdate("INSERT INTO hour (written ,phone ,time ,date ,month ,year ,usersname ,usersemail) VALUES ("+h.isWriten() +" ,'"+h.getPhone() +"' ,'"+h.getTime() +"' ,'"+h.getDate() +"' ,'"+h.getMonth() +"' ,'"+h.getYear() +"' ,'"+h.getUsersName() +"' ,'"+h.getUsersEmail() +"')" );
-                System.out.printf("Added %d rows", rows);
+                 ResultSet resultSet = statement.executeQuery("select * from hour WHERE time='"+h.getTime() +"' AND date='"+h.getDate() +"'AND month='"+h.getMonth() +"'AND year='"+h.getYear() +"'");            
+            if(!resultSet.next()){
+            int rows = statement.executeUpdate("INSERT INTO hour (written ,phone ,time ,date ,month ,year ,usersname ,usersemail) VALUES ("+h.isWriten() +" ,'"+h.getPhone() +"' ,'"+h.getTime() +"' ,'"+h.getDate() +"' ,'"+h.getMonth() +"' ,'"+h.getYear() +"' ,'"+h.getUsersName() +"' ,'"+h.getUsersEmail() +"')" );     
+             System.out.printf("Added %d rows", rows);
+            }
+           
+            
+            
+                
+               
                 if(!conn.isClosed()){
                     conn.close();             
                 }
              }
-             
+             //IF check THEN операторы  END IF;
              
              
             }
@@ -101,7 +111,7 @@ public class DataBaseInteraction {
          }        
     }
      
-      public void deleteData(int id){
+      public void deleteTime(String time, String date,String month){
     try{
             //String url = "jdbc:mysql://localhost/store?serverTimezone=Europe/Moscow&useSSL=false";
             // String username = "root";
@@ -112,7 +122,7 @@ public class DataBaseInteraction {
                   
                 Statement statement = conn.createStatement();
                  
-                int rows = statement.executeUpdate("DELETE FROM users WHERE Id = "+id);
+                int rows = statement.executeUpdate("DELETE FROM hour  WHERE time='"+time+"' AND date='"+date +"' AND month='"+month +"'");
                 System.out.printf("%d row(s) deleted", rows);
              if(!conn.isClosed()){
                     conn.close();             
@@ -125,11 +135,42 @@ public class DataBaseInteraction {
              System.out.println(ex);
          }    
     }
-
+      
+      public void deleteRecord(String time, String date,String month) throws SQLException{
+                this.updataData( "null", "usersname" , time, date, month );
+                this.updataData("null", "phone" , time, date, month );
+                this.updataData( "null", "usersemail" , time, date, month );
+                this.updataData("false", "written", time, date, month );
+}
+ public void deleteDay(String date,String month){
+   try{
+            //String url = "jdbc:mysql://localhost/store?serverTimezone=Europe/Moscow&useSSL=false";
+            // String username = "root";
+            //String password = "password";
+             Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
+              
+             try (Connection conn = DriverManager.getConnection(url, username, password)){
+                  
+                Statement statement = conn.createStatement();
+                 
+                int rows = statement.executeUpdate("DELETE FROM hour  WHERE date='"+date +"' AND month='"+month +"'");
+                System.out.printf("%d row(s) deleted", rows);
+             if(!conn.isClosed()){
+                    conn.close();             
+                }
+             }
+         }
+         catch(Exception ex){
+             System.out.println("Connection failed...");
+              
+             System.out.println(ex);
+         } 
+                  
+    }
     
 
   
-    
+
     
     
     
