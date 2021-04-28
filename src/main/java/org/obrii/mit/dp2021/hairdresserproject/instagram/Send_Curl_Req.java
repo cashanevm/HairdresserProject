@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;  
 import java.io.InputStreamReader; 
+import static java.lang.System.out;
 import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -24,7 +25,7 @@ public class Send_Curl_Req {
 		con.setRequestMethod("POST");
 	 	con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-		String urlParameters = "client_id="+commonthings.CLIENT_ID+"&client_secret="+commonthings.CLIENT_SECRET+"&grant_type=authorization_code&redirect_uri="+commonthings.AUTHORIZATION_REDIRECT_URI+"&code="+code+"";
+		String urlParameters = "client_id="+commonthings.CLIENT_ID+"&client_secret="+commonthings.CLIENT_SECRET+"&grant_type=authorization_code&redirect_uri=https:"+commonthings.AUTHORIZATION_REDIRECT_URI+"&code="+code+"";
 
 		// Send post request
 		con.setDoOutput(true);
@@ -34,9 +35,9 @@ public class Send_Curl_Req {
 		wr.close();
 
 		int responseCode = con.getResponseCode();
-		System.out.println("\nSending 'POST' request to URL : " + url);
-		System.out.println("Post parameters : " + urlParameters);
-		System.out.println("Response Code : " + responseCode);
+		out.println("\nSending 'POST' request to URL : " + url);
+		out.println("Post parameters : " + urlParameters);
+		out.println("Response Code : " + responseCode);
 
 		BufferedReader in = new BufferedReader(
 		        new InputStreamReader(con.getInputStream()));

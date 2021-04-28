@@ -11,7 +11,7 @@
 
 
 
-<a href="https://api.instagram.com/oauth/authorize/?client_id=<%=commonthings.CLIENT_ID %>&redirect_uri=<%=commonthings.AUTHORIZATION_REDIRECT_URI %>&response_type=code">Login With Instagram</a>
+<a href="https://api.instagram.com/oauth/authorize/?client_id=<%=commonthings.CLIENT_ID %>&redirect_uri=https:<%=commonthings.AUTHORIZATION_REDIRECT_URI %>&scope=user_profile,user_media&response_type=code">Login With Instagram</a>
 
 </body>
 </html>

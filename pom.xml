@@ -31,6 +31,11 @@
     <artifactId>postgresql</artifactId>
     <version>42.2.20</version>
 </dependency>
+<!--<dependency>
+    <groupId>org.brunocvcunha.instagram4j</groupId>
+    <artifactId>instagram4j</artifactId>
+    <version>1.14</version>
+</dependency>-->
     </dependencies>
 
     <build>
