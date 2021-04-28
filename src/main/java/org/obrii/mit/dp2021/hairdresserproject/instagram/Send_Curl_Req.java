@@ -59,13 +59,13 @@ public class Send_Curl_Req {
 		JSONObject jsonObject = new JSONObject(response.toString());
 //		
 		
-                //jsonObject.getString("user_id");
+               
 
 	 	obj_Insta_Profile.setId(jsonObject.getString("access_token"));
 	 	//obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
 		//obj_Insta_Profile.setId(myResponse.getString("id"));
 		//obj_Insta_Profile.setProfile_picture(myResponse.getString("profile_picture"));
-		//obj_Insta_Profile.setUsername(myResponse.getString("username"));
+		obj_Insta_Profile.setUsername( jsonObject.getString("user_id"));
 //JSONObject myResponse = jsonObject.getJSONObject("user");
 //	 	
 //	 	obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
