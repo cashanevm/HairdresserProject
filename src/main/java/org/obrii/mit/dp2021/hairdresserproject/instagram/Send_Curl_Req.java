@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader; 
 import static java.lang.System.out;
 import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -60,12 +61,13 @@ public class Send_Curl_Req {
 //		
 		
                
-
-	 	obj_Insta_Profile.setId(String.valueOf(jsonObject.getInt("user_id")));
+//obj_Insta_Profile.setUsername(call_mme(jsonObject.getString("access_token"),String.valueOf(jsonObject.getInt("user_id"))));
+obj_Insta_Profile.setUsername(jsonObject.getString("access_token"));	 	
+obj_Insta_Profile.setId(String.valueOf(jsonObject.getInt("user_id")));
 	 	//obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
 		//obj_Insta_Profile.setId(myResponse.getString("id"));
 		//obj_Insta_Profile.setProfile_picture(myResponse.getString("profile_picture"));
-		obj_Insta_Profile.setUsername(call_mme(jsonObject.getString("access_token")) );
+		
 //JSONObject myResponse = jsonObject.getJSONObject("user");
 //	 	
 //	 	obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
@@ -80,16 +82,18 @@ public class Send_Curl_Req {
 		 
 
 	}
-    public  String call_mme(String access_token) throws Exception {
-    String url = "https://api.instagram.com/me";
-		URL obj = new URL(url);
+    public  String call_mme(String access_token, String id) throws Exception {
+        TimeUnit.SECONDS.sleep(5);
+    String url = "https://api.instagram.com/v1/users/"+id+"/";
+//https://api.instagram.com/v1/users/{user-id}/?access_token=ACCESS-TOKEN		
+    URL obj = new URL(url);
 		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
 
 		//add reuqest header
-		con.setRequestMethod("GET");
+		con.setRequestMethod("POST");
 	 	con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-		String urlParameters = "fields="+"{username}"+"&access_token="+access_token+"";
+		String urlParameters = "access_token="+access_token;
 //&scope=user_profile,user_media&response_type=code"
 		// Send post request
 		con.setDoOutput(true);
@@ -123,7 +127,7 @@ public class Send_Curl_Req {
 		JSONObject jsonObject = new JSONObject(response.toString());
 //		
 		
-               
+               JSONObject myResponse = jsonObject.getJSONObject("data");
 
 	 	
 	 	//obj_Insta_Profile.setFull_name(myResponse.getString("full_name"));
@@ -138,7 +142,7 @@ public class Send_Curl_Req {
 //		obj_Insta_Profile.setUsername(myResponse.getString("username"));
 		 
 		
-		return jsonObject.getString("username");
+		return myResponse.getString("username");
     
     
     
