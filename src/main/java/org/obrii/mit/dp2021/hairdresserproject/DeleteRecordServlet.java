@@ -32,6 +32,9 @@ public class DeleteRecordServlet extends HttpServlet {
             throws ServletException, IOException {      
                 DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
         try {
+           if(request.getParameter("hour") == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
             bd.deleteRecord(request.getParameter("hour"), request.getParameter("day"), request.getParameter("month"));
         } catch (SQLException ex) {
             Logger.getLogger(DeleteRecordServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -44,6 +47,9 @@ public class DeleteRecordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
+                 if(request.getParameter("hour") == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
                 bd.deleteTime(request.getParameter("hour"), request.getParameter("day"), request.getParameter("month"));
                 request.getRequestDispatcher("pages/deleteRecord.jsp").forward(request, response);
     }

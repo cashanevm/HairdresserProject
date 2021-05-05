@@ -21,6 +21,7 @@ public class Hour implements Serializable{
     private String date;
     private String month;
     private String year;
+        private String userid;
 
     public Hour(String time, String date, String month) {
         this.time = time;
@@ -28,7 +29,7 @@ public class Hour implements Serializable{
         this.month = month;
     }
 
-    public Hour(boolean Writen, String usersName, String usersEmail, String phone, String time, String date, String month, String year) {
+    public Hour(boolean Writen, String usersName, String usersEmail, String phone, String time, String date, String month, String year , String userid) {
         this.Writen = Writen;
         this.usersName = usersName;
         this.usersEmail = usersEmail;
@@ -37,8 +38,9 @@ public class Hour implements Serializable{
         this.date = date;
         this.month = month;
         this.year = year;
+        this.userid = userid;
     }
-    public Hour( String usersName, String usersEmail, String phone, String time, String date, String month, String year) {
+    public Hour( String usersName, String usersEmail, String phone, String time, String date, String month, String year , String userid) {
        
         this.usersName = usersName;
         this.usersEmail = usersEmail;
@@ -47,10 +49,19 @@ public class Hour implements Serializable{
         this.date = date;
         this.month = month;
         this.year = year;
+         this.userid = userid;
     }
 
     public Hour(String time) {
         this.time = time;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public String getDate() {

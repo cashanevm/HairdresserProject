@@ -29,6 +29,9 @@ public class DeleteDayServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {      
                 DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
+                if(request.getParameter("day") == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
                 bd.deleteDay(request.getParameter("day"), request.getParameter("month"));
                 request.getRequestDispatcher("pages/seccessSDelete.jsp").forward(request, response);
     }

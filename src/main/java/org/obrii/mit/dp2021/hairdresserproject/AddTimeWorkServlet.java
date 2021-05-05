@@ -36,7 +36,10 @@ public class AddTimeWorkServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 HttpSession session  = request.getSession();
-                session.getAttribute("year");
+                
+                if(session.getAttribute("year") == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
                 String[] words = request.getParameterValues("hours");
                 DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
                 for (String word : words) {

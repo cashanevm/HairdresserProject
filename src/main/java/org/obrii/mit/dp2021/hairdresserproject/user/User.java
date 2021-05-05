@@ -12,11 +12,26 @@ import java.util.ArrayList;
  * @author NEVM PC
  */
 public class User {
+    private String userid;
     private String img;
     private String name;
     private String email;
+     private boolean instagram;
     private boolean superUser = false;
     private ArrayList superUsers = new ArrayList();
+
+    public String getuserId() {
+        return userid;
+    }
+
+
+    public boolean isInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(boolean instagram) {
+        this.instagram = instagram;
+    }
 
     public boolean isSuperUser() {
         return superUser;
@@ -52,6 +67,7 @@ public class User {
     
 
     public User(String img, String name, String email) {
+        this.instagram = false;
         this.img = img;
         this.name = name;
         this.email = email;
@@ -59,4 +75,15 @@ public class User {
             superUser = true;
         }
     }
+    public User(String id, String name) {
+        this.instagram = true;
+        this.userid = id;
+        this.name = name;
+        if(id.equals("1397267678")){
+            superUser = true;
+        }
+    }
+    
+    
+    
 }

@@ -25,7 +25,7 @@
             String name = user.getName();
             String img = user.getImg();
             String email = user.getEmail();
-           
+           String id = user.getuserId();
          
         %>
 <html>
@@ -76,13 +76,31 @@
             <%=days.get(j).getTime()%> година||
             <%=days.get(j).getDate()%>   число         
             <% 
-            System.out.println(days.get(j).isWriten());
-            System.out.println(days.get(j).getPhone());
-            System.out.println(days.get(j).getTime());
-            System.out.println(days.get(j).getUsersEmail());
-            System.out.println(days.get(j).getUsersName());
+           if(user.isInstagram() && days.get(j).isWriten() && days.get(j).getUserid().equals(id)){
            
-                if (days.get(j).isWriten() && days.get(j).getUsersEmail().equals(email)){
+           
+           
+           %>
+            
+            Заброньовано вами!
+            
+            <form action="<%=request.getContextPath()%>/DeleteRecord"> 
+        <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
+        <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
+        <button type="submit">удалити</button>
+        </form> 
+          
+            
+            
+            
+            <%
+           
+           
+           
+           
+           }
+                else if (days.get(j).isWriten() && days.get(j).getUsersEmail().equals(email)){
             
             %>
             

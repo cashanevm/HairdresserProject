@@ -37,14 +37,14 @@ public class DataStore {
             while( resultSet.next()){
            
             if(resultSet.getString(2).equals("f")){
-               System.out.println("false");
-            data.add(new Hour(false, resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7))
+              
+            data.add(new Hour(false, resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),resultSet.getString(10))
         );
             }else if(resultSet.getString(2).equals("t")){
-             System.out.println("true");
-             data.add(new Hour(true, resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7))
+             
+             data.add(new Hour(true, resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),resultSet.getString(10))
         );
-            }else{data.add(new Hour(resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7))
+            }else{data.add(new Hour(resultSet.getString(8), resultSet.getString(9), resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6), resultSet.getString(7),resultSet.getString(10))
         );}
             
             }

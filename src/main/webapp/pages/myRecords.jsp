@@ -24,6 +24,7 @@
             String name = user.getName();
             String img = user.getImg();
             String email = user.getEmail();
+            String id = user.getuserId();
     
     List<Hour> days = (List<Hour>) request.getAttribute("days");
     
@@ -56,10 +57,10 @@
         
         
         <%
-    
+          
+            if(user.isInstagram()){
             
-            
-                if(email.equals(days.get(j).getUsersEmail())){
+             if(id.equals(days.get(j).getUserid())){
             
            
             %>
@@ -82,6 +83,40 @@
 <%
             
             }
+            
+            
+            
+            
+            }else{
+             if(email.equals(days.get(j).getUsersEmail())){
+            
+           
+            %>
+ 
+<tr>
+   <th><%=days.get(j).getDate()%>||<%=days.get(j).getMonth()%>||<%=days.get(j).getTime()%></th> 
+   <td>
+       <%=days.get(j).getUsersName()%> 
+       <form action="<%=request.getContextPath()%>/DeleteRecord"> 
+        <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
+        <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
+       <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
+        <button type="submit">удалити</button>
+        </form> 
+   </td>
+    
+  </tr>
+
+
+<%
+            
+            }
+            
+            
+            
+            }
+            
+               
             
             
     

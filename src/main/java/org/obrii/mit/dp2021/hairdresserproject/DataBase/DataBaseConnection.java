@@ -31,7 +31,7 @@ public class DataBaseConnection {
         }
         Statement statement = c.createStatement();     
         //int rowsIdd = statement.executeUpdate("DROP TABLE files_info");
-//        int rowsIаdd = statement.executeUpdate("DROP TABLE Hour");
+       // int rowsIаdd = statement.executeUpdate("DROP TABLE Hour");
         int rowsId = statement.executeUpdate("CREATE TABLE IF NOT EXISTS Hour (\n" +
 " id serial primary key,\n" +
 " written boolean default false,\n" +
@@ -41,8 +41,8 @@ public class DataBaseConnection {
 "month varchar(3),\n" +
 "year varchar(5),\n" +
 "usersname varchar(60),\n" +
-//"check varchar(60) UNIQUE,\n" +
-"usersemail varchar(60));");
+"usersemail varchar(60),\n" +
+" userid varchar(60));");
         //int rowsInfo = statement.executeUpdate("CREATE TABLE IF NOT EXISTS files_info(id VARCHAR(6), naming VARCHAR(60),tables_id INTEGER , line INTEGER , possition VARCHAR(6) , height VARCHAR(6) , val VARCHAR(300) , sheet VARCHAR(30) )");
          //int rowsInfo = statement.executeUpdate("CREATE TABLE IF NOT EXISTS files_info(id VARCHAR(6), naming VARCHAR(60) NOT NULL,tables_id INTEGER NOT NULL, line INTEGER NOT NULL, possition VARCHAR(6) NOT NULL, height VARCHAR(6) NOT NULL, val VARCHAR(300) NOT NULL, sheet VARCHAR(30) NOT NULL)");
         

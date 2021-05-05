@@ -52,7 +52,7 @@ public class DataBaseInteraction {
                 Statement statement = conn.createStatement();
                  ResultSet resultSet = statement.executeQuery("select * from hour WHERE time='"+h.getTime() +"' AND date='"+h.getDate() +"'AND month='"+h.getMonth() +"'AND year='"+h.getYear() +"'");            
             if(!resultSet.next()){
-            int rows = statement.executeUpdate("INSERT INTO hour (written ,phone ,time ,date ,month ,year ,usersname ,usersemail) VALUES ("+h.isWriten() +" ,'"+h.getPhone() +"' ,'"+h.getTime() +"' ,'"+h.getDate() +"' ,'"+h.getMonth() +"' ,'"+h.getYear() +"' ,'"+h.getUsersName() +"' ,'"+h.getUsersEmail() +"')" );     
+            int rows = statement.executeUpdate("INSERT INTO hour (written ,phone ,time ,date ,month ,year ,usersname ,usersemail,userid) VALUES ("+h.isWriten() +" ,'"+h.getPhone() +"' ,'"+h.getTime() +"' ,'"+h.getDate() +"' ,'"+h.getMonth() +"' ,'"+h.getYear() +"' ,'"+h.getUsersName() +"' ,'"+h.getUsersEmail() +"','"+h.getUserid()+"')" );     
              System.out.printf("Added %d rows", rows);
             }
            

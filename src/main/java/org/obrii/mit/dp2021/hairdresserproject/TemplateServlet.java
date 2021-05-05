@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.obrii.mit.dp2021.hairdresserproject.instagram;
+package org.obrii.mit.dp2021.hairdresserproject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,18 +17,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author NEVM PC
  */
-@WebServlet(name = "InstServlet", urlPatterns = {"/inst"})
-public class InstServlet extends HttpServlet {
+@WebServlet(name = "TemplateServlet", urlPatterns = {"/Template"})
+public class TemplateServlet extends HttpServlet {
 
 
-
-
-    
+ 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-    
-    request.getRequestDispatcher("pages/inst_success.jsp").forward(request, response); 
+            
     }
 
     /**
@@ -42,7 +39,7 @@ public class InstServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       request.getRequestDispatcher("pages/inst_index.jsp").forward(request, response); 
+        
     }
 
     /**

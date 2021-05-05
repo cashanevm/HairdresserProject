@@ -3,7 +3,7 @@
     Created on : 24.04.2021, 10:31:58
     Author     : NEVM PC
 --%>
-
+<%@page import="org.obrii.mit.dp2021.hairdresserproject.instagram.commonthings"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,10 +14,10 @@
    <meta name="google-signin-client_id" content="217334640306-cgjotu7nlpkdrdf35h4dasbntmlu9lrd.apps.googleusercontent.com">
 </head>
 <body>
-   
-     <form action="<%=request.getContextPath()%>/inst" method="post">
+   <a href="https://api.instagram.com/oauth/authorize/?client_id=<%=commonthings.CLIENT_ID %>&redirect_uri=https:<%=commonthings.AUTHORIZATION_REDIRECT_URI %>&scope=user_profile,user_media&response_type=code">Login With Instagram</a>
+<!--     <form action="https://api.instagram.com/oauth/authorize/?client_id=<%=commonthings.CLIENT_ID %>&redirect_uri=https:<%=commonthings.AUTHORIZATION_REDIRECT_URI %>&scope=user_profile,user_media&response_type=code" >
          <input type="submit" value="inst">
-      </form>
+      </form>-->
     
     <div class="g-signin2" data-onsuccess="onSignIn" id="myP"></div>
       <img id="myImg"><br>

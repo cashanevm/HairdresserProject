@@ -19,13 +19,56 @@
             String name = user.getName();
             String img = user.getImg();
             String email = user.getEmail();
-           
+           String id = user.getuserId();
          
         %>
         
+      
        <h1><%=name%></h1>
+        
+         <%
+                     
+            if(user.isInstagram()){
+            
+            
+           
+            %>
+ 
+
+ 
+        <img src="../img/user-icon.png">
+        <p><%=id%></p>
+
+
+<%
+            
+            
+            
+            
+            
+            
+            }else{
+             
+            
+           
+            %>
+ 
+
         <img src="<%=img%>">
         <p><%=email%></p>
+
+<%
+            
+            
+            
+            
+            
+            }
+        %>
+        
+        
+        
+        
         <p><%if(user.isSuperUser()){
             %> superUser 
            <hr> 

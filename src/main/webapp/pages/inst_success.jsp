@@ -1,3 +1,4 @@
+<%@page import="java.util.concurrent.TimeUnit"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.instagram.Insta_Profile"%>
 <%@page import="org.obrii.mit.dp2021.hairdresserproject.instagram.Send_Curl_Req"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -20,12 +21,12 @@ Send_Curl_Req obj_Send_Curl_Req=new Send_Curl_Req();
 
 Insta_Profile obj_Insta_Profile=new Insta_Profile();
 obj_Insta_Profile=obj_Send_Curl_Req.call_me(code);
-
+;
 
 
 %>
 
-
+<%=obj_Send_Curl_Req.call_mme(obj_Insta_Profile.getUsername(),obj_Insta_Profile.getId())%>
 Login Success<br>
 
 

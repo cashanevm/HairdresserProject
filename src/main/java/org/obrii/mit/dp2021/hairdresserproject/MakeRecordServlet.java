@@ -49,12 +49,17 @@ public class MakeRecordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 HttpSession session  = request.getSession();
+                 if(session.getAttribute("user") == null){
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
                 User user = (User) session.getAttribute("user");
+                
                 DataBaseInteraction bd = new DataBaseInteraction("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
                 bd.updataData(user.getName(), "usersname" , request.getParameter("hour"), request.getParameter("day"), request.getParameter("month") );
                 bd.updataData(String.valueOf(request.getParameter("ph")), "phone" , request.getParameter("hour"), request.getParameter("day"), request.getParameter("month") );
                 bd.updataData( user.getEmail(), "usersemail" , request.getParameter("hour"), request.getParameter("day"), request.getParameter("month") );
                 bd.updataData("true", "written", request.getParameter("hour"), request.getParameter("day"), request.getParameter("month") );
+                bd.updataData( user.getuserId(), "userid", request.getParameter("hour"), request.getParameter("day"), request.getParameter("month") );
                 request.getRequestDispatcher("pages/seccessRecord.jsp").forward(request, response); 
      
     }
