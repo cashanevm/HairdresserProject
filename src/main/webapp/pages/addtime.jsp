@@ -120,9 +120,11 @@
     
     <tr>
     <td> <form action="<%=request.getContextPath()%>/addtimework"> 
-        <input type="hidden" name="day" value="<%= c.get(Calendar.DAY_OF_MONTH)%>">
+          <input  type="hidden" value="60" name="step">
+            <input type="hidden" name="day" value="<%= c.get(Calendar.DAY_OF_MONTH)%>">
         <input type="hidden" name="month" value="<%=c.get(Calendar.MONTH)%>">
         <input type="hidden" name="year" value="<%= c.get(Calendar.YEAR)%>">
+      
         <button type="submit">добавити час на <%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></button>
         </form>  
      

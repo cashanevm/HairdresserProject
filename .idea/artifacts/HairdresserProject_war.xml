@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="HairdresserProject:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>HairdresserProject</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="${project.artifactId}-${project.version}.war">
+      <element id="artifact" artifact-name="HairdresserProject:war exploded" />
+    </root>
+  </artifact>
+</component>

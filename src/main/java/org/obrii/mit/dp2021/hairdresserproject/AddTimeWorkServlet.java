@@ -8,6 +8,7 @@ package org.obrii.mit.dp2021.hairdresserproject;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,14 @@ public class AddTimeWorkServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                request.getRequestDispatcher("pages/addtimework.jsp").forward(request, response); 
+       
+            request.setAttribute("step", request.getParameter("step"));
+            
+        
+        
+        
+        
+        request.getRequestDispatcher("pages/addtimework.jsp").forward(request, response); 
     }
 
     
