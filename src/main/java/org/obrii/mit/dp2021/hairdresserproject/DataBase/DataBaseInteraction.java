@@ -75,6 +75,40 @@ public class DataBaseInteraction {
             
         
     }
+     public void addSuperUser(String instId){
+        //data=('iPhone X', 76000)
+        //table=Products(ProductName, Price)
+        try{
+             Class.forName("org.postgresql.Driver").getDeclaredConstructor().newInstance();
+             try (Connection conn = DriverManager.getConnection(url, username, password)){
+                Statement statement = conn.createStatement();
+                 
+            int rows = statement.executeUpdate("INSERT INTO superUsers (intId) VALUES ('"+instId+"')" );     
+             System.out.printf("Added %d rows", rows);
+            
+           
+            
+            
+                
+               
+                if(!conn.isClosed()){
+                    conn.close();             
+                }
+             }
+             //IF check THEN операторы  END IF;
+             
+             
+            }
+         catch(Exception ex){
+             System.out.println("Connection failed...");
+             System.out.println(ex);
+         }
+            
+        
+    }
+    
+    
+    
     
      public void updataData(String nameData, String nameRow , String time, String date,String month ){
         //nameData=Price - 5000

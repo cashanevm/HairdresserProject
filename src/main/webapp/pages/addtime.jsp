@@ -14,8 +14,6 @@
    <%
     Calendar c = new GregorianCalendar();
     boolean canDeleteDay;
-    
-    //List<Day> days = (List<Day>) request.getAttribute("days");
     List<Hour> days = (List<Hour>) request.getAttribute("days");
    %>
 
@@ -38,10 +36,10 @@
   </style>
     
     <body>
-        <h1>Date</h1>
+        <h1>График работы парикмахера</h1>
         
         <form action="<%=request.getContextPath()%>/success" method="post">
-            <input type="submit" value="home">
+            <input type="submit" value="Перейти на главную">
         
         </form>
         
@@ -49,7 +47,7 @@
    
     <%for(int i = 0 ; i<14; i++){%>
   <tr>
-    <th><%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></th>
+    <th><%= c.get(Calendar.DAY_OF_MONTH)%> число <%=c.get(Calendar.MONTH)%> месяца <%= c.get(Calendar.YEAR)%> года</th>
   </tr>
     
    <%%>
@@ -68,21 +66,21 @@
                   
             %>
             <tr>
-                <td>
+                <td>Время:
             <%=days.get(j).getTime()%>||
-            <%=days.get(j).getDate()%>            
+            <%=days.get(j).getDate()%>-е число       
                    
            <% 
                if(days.get(j).isWriten()){
                    %>
-          || <%=days.get(j).getPhone()%> ||
-            <%=days.get(j).getUsersEmail()%> ||
-            <%=days.get(j).getUsersName()%> 
+          || Телефон: <%=days.get(j).getPhone()%> ||
+            Маил:<%=days.get(j).getUsersEmail()%> ||
+            Ник:<%=days.get(j).getUsersName()%> 
             <form action="<%=request.getContextPath()%>/SDeleteRecord"> 
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
        <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
-        <button type="submit">удалити резервацію</button>
+        <button type="submit">Удалить резервацию</button>
         </form> 
             <%
                    
@@ -96,7 +94,7 @@
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
        <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
-        <button type="submit">удалити час роботи</button>
+        <button type="submit">Удалить час работы</button>
         </form> 
                 </td>
             </tr>
@@ -125,7 +123,7 @@
         <input type="hidden" name="month" value="<%=c.get(Calendar.MONTH)%>">
         <input type="hidden" name="year" value="<%= c.get(Calendar.YEAR)%>">
       
-        <button type="submit">добавити час на <%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></button>
+        <button type="submit">Добавить время на <%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%></button>
         </form>  
      
      
@@ -134,7 +132,7 @@
         <input type="hidden" name="day" value="<%= c.get(Calendar.DAY_OF_MONTH)%>">
         <input type="hidden" name="month" value="<%=c.get(Calendar.MONTH)%>">
         <input type="hidden" name="year" value="<%= c.get(Calendar.YEAR)%>">
-        <button type="submit">видалити <%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%> з робочого графіку</button>
+        <button type="submit">Удалить <%= c.get(Calendar.DAY_OF_MONTH)%> <%=c.get(Calendar.MONTH)%> <%= c.get(Calendar.YEAR)%> с рабочего графика</button>
         </form>
          <%}%>
     </td>

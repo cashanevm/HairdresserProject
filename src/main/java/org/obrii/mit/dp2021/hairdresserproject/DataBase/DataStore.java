@@ -52,6 +52,22 @@ public class DataStore {
         
     return data;
     }
+    public List<String> getSuperUsers() throws SQLException, ClassNotFoundException{
+        List<String> data = new ArrayList<>();
+        
+        Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://ec2-54-247-79-178.eu-west-1.compute.amazonaws.com:5432/d4am615tqn7fq3","ugrhebsleflarf","b1a58307a65281150d163559af0d8b3ede580b24952c424cbb738d5d48778699");
+       
+            Statement statement = connection.createStatement();
+           
+            ResultSet resultSet = statement.executeQuery("select * from superusers");            
+            while( resultSet.next()){
+            data.add(resultSet.getString(0));
+            }
+        connection.close();
+        
+    return data;
+    }
     
 //    public List<Data> sortingData(List<Data> dataBase, String s){       
 //        List<Data> newData = new ArrayList<>();

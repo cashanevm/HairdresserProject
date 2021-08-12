@@ -5,7 +5,9 @@
  */
 package org.obrii.mit.dp2021.hairdresserproject.user;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import org.obrii.mit.dp2021.hairdresserproject.DataBase.DataStore;
 
 /**
  *
@@ -75,13 +77,21 @@ public class User {
             superUser = true;
         }
     }
-    public User(String id, String name) {
+    public User(String id, String name) throws SQLException, ClassNotFoundException {
+        DataStore ds = new DataStore();
         this.instagram = true;
         this.userid = id;
         this.name = name;
         if(id.equals("1397267678")){
             superUser = true;
         }
+        for(String InstId : ds.getSuperUsers()){
+        if(id.equals(InstId)){
+            superUser = true;
+        }
+        }
+        
+        
     }
     
     

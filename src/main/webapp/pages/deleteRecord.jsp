@@ -12,10 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>deleted</h1>
+         <h1>Вы успешно удалили!</h1>
         <form action="<%=request.getContextPath()%>/success" method="post">
         
-            <input type="submit" value="ok">
+            <input type="submit" value="Я Понял!">
         </form>
     </body>
 </html>

@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Успех!</title>
     </head>
     <body>
-        
+        <h1>Вы успешно удалили!</h1>
         <form action="<%=request.getContextPath()%>/AddTime">
         
-            <input type="submit" value="ok">
+            <input type="submit" value="Я Понял!">
         </form>
     </body>
 </html>

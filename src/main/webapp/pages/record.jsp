@@ -12,18 +12,19 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Make record</h1>
+        <h1>Сделать запись на:</h1>
         
-        <p><%=request.getParameter("day")%></p>
-       <p><%=request.getParameter("month")%></p>
-         <p><%=request.getParameter("hour")%></p>
+        <p><%=request.getParameter("day")%>-е число</p>
+       <p><%=request.getParameter("month")%> месеца</p>
+         <p>на время: <%=request.getParameter("hour")%></p>
+         <p>Введите свой телефон: </p>
        <form action="<%=request.getContextPath()%>/MakeRecord" method="post">
            
            <input type="hidden" value="<%=request.getParameter("day")%>" name="day">
            <input type="hidden" value="<%=request.getParameter("month")%>" name="month">
            <input type="hidden" value="<%=request.getParameter("hour")%>" name="hour">
            <input type="phone"  name="ph">
-           <input type="submit" value="ok">
+           <input type="submit" value="Записаться!">
            
        </form>
         

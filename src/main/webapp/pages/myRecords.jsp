@@ -35,16 +35,16 @@
     </head>
     <body>
   
-   <h1>сегодня: <%=c.get(Calendar.DAY_OF_MONTH)%></h1>
+   <h1>Сегодня: <%=c.get(Calendar.DAY_OF_MONTH)%>-е число</h1>
     <form action="<%=request.getContextPath()%>/success" method="post">
-            <input type="submit" value="home">
+            <input type="submit" value="Перейти на главную">
         
         </form>
  </table>
         
         <table border="1" width="100%" cellpadding="5">
             <tr>
-   <th>дата</th> <td>ваш телефон</td>
+   <th>Дата</th> <td>Ваш контакт!</td>
     
   </tr>
          <%
@@ -66,14 +66,14 @@
             %>
  
 <tr>
-   <th><%=days.get(j).getDate()%>||<%=days.get(j).getMonth()%>||<%=days.get(j).getTime()%></th> 
+   <th><%=days.get(j).getDate()%>-е число||<%=days.get(j).getMonth()%> месеца||на время: <%=days.get(j).getTime()%> </th> 
    <td>
        <%=days.get(j).getUsersName()%> 
        <form action="<%=request.getContextPath()%>/DeleteRecord"> 
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
        <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
-        <button type="submit">удалити</button>
+        <button type="submit">Удалить</button>
         </form> 
    </td>
     
@@ -101,7 +101,7 @@
         <input type="hidden" name="day" value="<%=days.get(j).getDate()%>">
         <input type="hidden" name="month" value="<%=days.get(j).getMonth()%>">
        <input type="hidden" name="hour" value="<%=days.get(j).getTime()%>">
-        <button type="submit">удалити</button>
+        <button type="submit">Удалить</button>
         </form> 
    </td>
     

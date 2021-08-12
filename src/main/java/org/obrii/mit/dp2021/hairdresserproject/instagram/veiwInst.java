@@ -20,7 +20,7 @@
 //import org.brunocvcunha.instagram4j.requests.payload.InstagramInboxResult;
 //import org.brunocvcunha.instagram4j.requests.payload.InstagramInboxThread;
 //import org.brunocvcunha.instagram4j.requests.payload.InstagramInboxThreadItem;
-//import org.brunocvcunha.instagram4j.requests.payload.InstagramSearchUsernameResult;
+//import org.brunocvcunha.instagram4j.requests.payload..InstagramSearchUsernameResult;
 //import org.brunocvcunha.instagram4j.requests.payload.InstagramUserSummary;
 //
 ///**
@@ -36,7 +36,7 @@
 //		instagram.login();
 //
 //		// получение информации о пользователе
-//		InstagramSearchUsernameResult usernameResult = instagram.sendRequest(new InstagramSearchUsernameRequest("alexander_khaustov"));
+//		InstagramSearchUsernameResult usernameResult = instagram.sendRequest( new InstagramSearchUsernameRequest("alexander_khaustov"));
 //		System.out.println(usernameResult.getUser().biography);
 //		System.out.println(usernameResult.getUser().username);
 //		System.out.println(usernameResult.getUser().getFollower_count());
@@ -56,7 +56,7 @@
 //		// получение постов
 //		InstagramFeedResult postList = instagram.sendRequest(new InstagramUserFeedRequest(usernameResult.getUser().getPk()));
 //		for(InstagramFeedItem post : postList.getItems()) {
-//			System.out.println(post.user..url);
+//			
 //                        System.out.println(post.caption.getText());
 //			// написать комментарий
 //			//instagram.sendRequest(new InstagramPostCommentRequest(post.getPk(), "Тестовый комментарий"));

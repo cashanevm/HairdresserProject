@@ -23,7 +23,7 @@
         <title>addtimework</title>
     </head>
     <body>
-        <h1>Step is: <%=Step%></h1>
+        <h1>Заданый шаг в <%=Step%> минут</h1>
         <%
         
         
@@ -32,7 +32,7 @@
         
         
         <form action="<%=request.getContextPath()%>/success" method="post">
-            <input type="submit" value="home">
+            <input type="submit" value="Перейти на главную">
         
         </form>
         <form action="<%=request.getContextPath()%>/addtimework" method="post">
@@ -43,7 +43,7 @@
         <input type="checkbox" name="hours" value="<%if(i==0){out.println(0);}else{out.println(i/60);}%>:<%if(i==0){out.println(0);}else{out.println(i%60);}%>"/><%if(i==0){out.println(0);}else{out.println(i/60);}%>:<%if(i==0){out.println(0);}else{out.println(i%60);}%><br>
         
      <%}%>
-  <input type="submit" value="submit" />
+  <input type="submit" value="Добавить Выбранные часы" />
         
         
         </form>
@@ -71,7 +71,7 @@
         <input  type="hidden" value="<%=request.getParameter("month")%>" name="month">
         <input  type="hidden" value="<%=request.getParameter("year")%>" name="year">
             
-  <input type="submit" value="задать шаг" />
+  <input type="submit" value="Задать шаг" />
         
         
         </form>

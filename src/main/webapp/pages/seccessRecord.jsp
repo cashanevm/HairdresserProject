@@ -9,13 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Успех!</title>
     </head>
     <body>
-        
+        <h1>Вы успешно записались!</h1>
+        <p>На главной страничке можите пересмотреть свою запись или же удалить.</p>
         <form action="<%=request.getContextPath()%>/success" method="post">
         
-            <input type="submit" value="ok">
+            <input type="submit" value="Хорошо,я понял.">
         </form>
     </body>
 </html>
